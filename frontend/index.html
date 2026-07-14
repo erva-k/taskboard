@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskBoard - Görev Takip Otomasyonu</title>
+</head>
+<body>
+
+    <header>
+        <h1>TaskBoard Application</h1>
+        <p>Uzaktan Staj Programı - 1. Gün Arayüz Çalışması</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Yeni Görev Tanımla</h2>
+            <form action="" method="POST">
+                <div>
+                    <label>Görev Başlığı:</label>
+                    <input type="text" name="task_title" required>
+                </div>
+                <br>
+                <div>
+                    <label>Görev Detayı:</label>
+                    <input type="text" name="task_detail">
+                </div>
+                <br>
+                <button type="submit">Sisteme Ekle</button>
+            </form>
+        </section>
+
+        <br><hr><br>
+
+        <section>
+            <h2>Aktif Görev Listesi</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Görev ID</th>
+                        <th>Başlık</th>
+                        <th>Detay</th>
+                        <th>Durum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Veritabanı Kurulumu</td>
+                        <td>MySQL veritabanı yerelde ayağa kaldırılacak.</td>
+                        <td>Beklemede</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Klasör Yapısının Kurulması</td>
+                        <td>Frontend ve backend klasörleri oluşturuldu.</td>
+                        <td>Tamamlandı</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Geliştirici: [Adın Soyadın] | Bilgisayar Mühendisliği Bölümü</p>
+    </footer>
+
+</body>
+</html>
