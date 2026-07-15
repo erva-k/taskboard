@@ -1,69 +1,134 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskBoard - Görev Takip Otomasyonu</title>
 </head>
+
 <body>
 
     <header>
         <h1>TaskBoard Application</h1>
-        <p>Uzaktan Staj Programı - 1. Gün Arayüz Çalışması</p>
+        <p>Uzaktan Staj Programı - 2. Gün</p>
     </header>
 
     <main>
+
         <section>
+
             <h2>Yeni Görev Tanımla</h2>
+
             <form action="" method="POST">
+
                 <div>
-                    <label>Görev Başlığı:</label>
-                    <input type="text" name="task_title" required>
+                    <label for="title">Görev Başlığı:</label><br>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Görev başlığını giriniz"
+                        maxlength="80"
+                        required>
                 </div>
+
                 <br>
+
                 <div>
-                    <label>Görev Detayı:</label>
-                    <input type="text" name="task_detail">
+                    <label for="priority">Öncelik:</label><br>
+                    <select id="priority" name="priority">
+                        <option value="low">Düşük</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="high">Yüksek</option>
+                    </select>
                 </div>
+
                 <br>
+
+                <div>
+                    <label for="description">Görev Açıklaması:</label><br>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                        placeholder="Görev açıklamasını giriniz"
+                        required></textarea>
+                </div>
+
+                <br>
+
                 <button type="submit">Sisteme Ekle</button>
+
             </form>
+
         </section>
 
-        <br><hr><br>
+        <br>
+        <hr>
+        <br>
 
         <section>
+
             <h2>Aktif Görev Listesi</h2>
+
             <table border="1">
+
                 <thead>
+
                     <tr>
                         <th>Görev ID</th>
                         <th>Başlık</th>
-                        <th>Detay</th>
+                        <th>Öncelik</th>
                         <th>Durum</th>
+                        <th>Oluşturma Tarihi</th>
                     </tr>
+
                 </thead>
+
                 <tbody>
+
                     <tr>
                         <td>1</td>
                         <td>Veritabanı Kurulumu</td>
-                        <td>MySQL veritabanı yerelde ayağa kaldırılacak.</td>
+                        <td>Yüksek</td>
                         <td>Beklemede</td>
+                        <td></td>
                     </tr>
+
                     <tr>
                         <td>2</td>
                         <td>Klasör Yapısının Kurulması</td>
-                        <td>Frontend ve backend klasörleri oluşturuldu.</td>
+                        <td>Normal</td>
                         <td>Tamamlandı</td>
+                        <td></td>
                     </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>HTML Formlarının Oluşturulması</td>
+                        <td>Normal</td>
+                        <td>Devam Ediyor</td>
+                        <td></td>
+                    </tr>
+
                 </tbody>
+
             </table>
+
         </section>
+
     </main>
 
     <footer>
-        <p>Geliştirici: [Adın Soyadın] | Bilgisayar Mühendisliği Bölümü</p>
+
+        <hr>
+
+        <p>Geliştirici: Erva Karakaş</p>
+        
+
     </footer>
 
 </body>
+
 </html>
