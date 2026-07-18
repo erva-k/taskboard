@@ -27,5 +27,18 @@ Bu çalışma, uzaktan staj programı kapsamında geliştirilen görev yönetim 
 * Tablo içerisine örnek görev kayıtları eklenerek sayfa tamamlanmıştır.
 * HTML5 semantik etiketleri (**header**, **main**, **section**, **footer**) kullanılmaya devam edilmiştir.
 
+# Taskboard Projesi - 3. Gün Teslim Raporu
 
+## Proje Hakkında 
 
+Bu çalışmada TaskBoard uygulamasının CSS tasarımı tamamlandı. Flexbox ile sayfa düzeni oluşturuldu, kart ve tablo stilleri eklendi, CSS Variables kullanıldı, hover efektleri ve badge yapıları oluşturuldu. Ayrıca sayfa responsive hale getirilerek mobil uyumluluk sağlandı.
+
+## Teknik Detaylar ve Yapılanlar
+
+* Tüm stiller ayrı bir CSS dosyasına taşındı.
+* CSS değişkenleri kullanılarak renk ve boşluk yönetimi sağlandı.
+* Flexbox ile sayfa düzeni oluşturuldu.
+* Kart, form, buton ve tablo tasarımları tamamlandı.
+* Butonlara hover efekti ve öncelik etiketleri (badge) eklendi.
+* Box Model kullanılarak düzenli boşluklar oluşturuldu.
+* Sayfa mobil cihazlar için responsive hale getirildi.
