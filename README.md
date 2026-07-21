@@ -42,3 +42,18 @@ Bu çalışmada TaskBoard uygulamasının CSS tasarımı tamamlandı. Flexbox il
 * Butonlara hover efekti ve öncelik etiketleri (badge) eklendi.
 * Box Model kullanılarak düzenli boşluklar oluşturuldu.
 * Sayfa mobil cihazlar için responsive hale getirildi.
+
+# Taskboard Projesi - 4. Gün Teslim Raporu
+
+## Proje Hakkında
+
+Bu çalışmada TaskBoard uygulaması responsive hale getirildi. CSS Grid kullanılarak sayfa düzeni oluşturuldu, dashboard bölümüne KPI kartları eklendi, mobil öncelikli (Mobile First) tasarım yaklaşımı uygulandı. Ayrıca media query kullanılarak farklı ekran boyutlarına uyum sağlandı ve tablo için yatay taşma kontrolü eklendi.
+
+## Teknik Detaylar ve Yapılanlar
+
+* Dashboard bölümüne Toplam Görev, Açık Görev ve Tamamlanan görev kartları eklendi.
+* CSS Grid kullanılarak responsive sayfa düzeni oluşturuldu.
+* Mobile First yaklaşımı uygulanarak mobil görünüm hazırlandı.
+* `@media` kullanılarak masaüstü ekranlarda iki kolonlu yapı oluşturuldu.
+* Görev tablosuna `overflow-x: auto` eklenerek küçük ekranlarda taşma önlendi.
+* Proje 390px, 768px ve masaüstü ekran boyutlarında test edilerek responsive görünümü kontrol edildi.
