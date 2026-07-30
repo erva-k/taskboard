@@ -70,3 +70,14 @@ Bu çalışmada ilk 4 günde öğrenilen HTML ve CSS konuları tek bir sayfada b
 - CSS sınıflarını daha düzenli hale getirdim.
 - Responsive tasarım için media query kullanımını pekiştirdim.
 - Daha okunabilir ve düzenli bir proje yapısı oluşturdum.
+
+## Gün 6
+
+Bugün projeye JavaScript eklenerek form işlemleri dinamik hale getirildi. Form gönderme olayı `addEventListener` ile yakalandı, kullanıcıdan alınan görev bilgileri okunarak tabloya yeni görev satırı eklendi. Öncelik seviyesine göre uygun rozet oluşturuldu, görev tarihi otomatik eklendi ve form gönderildikten sonra temizlendi. Ayrıca görev ID'si mevcut satır sayısına göre otomatik oluşturulacak şekilde düzenlendi.
+
+
+- DOM elemanlarını seçme (`querySelector`)
+- Event Listener kullanımı
+- Form verilerini okuma
+- `insertAdjacentHTML()` ile tabloya yeni satır ekleme
+- `form.reset()` ile formu temizleme
