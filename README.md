@@ -57,3 +57,16 @@ Bu çalışmada TaskBoard uygulaması responsive hale getirildi. CSS Grid kullan
 * `@media` kullanılarak masaüstü ekranlarda iki kolonlu yapı oluşturuldu.
 * Görev tablosuna `overflow-x: auto` eklenerek küçük ekranlarda taşma önlendi.
 * Proje 390px, 768px ve masaüstü ekran boyutlarında test edilerek responsive görünümü kontrol edildi.
+
+# Gün 5 - Statik UI Mini Proje (TaskBoard Dashboard)
+
+## Proje Hakkında
+
+Bu çalışmada ilk 4 günde öğrenilen HTML ve CSS konuları tek bir sayfada birleştirilerek statik bir TaskBoard Dashboard tasarımı oluşturulmuştur.
+
+
+- Farklı HTML bileşenlerini tek bir sayfada birleştirmeyi öğrendim.
+- Dashboard düzeni oluşturmak için Grid yapısını kullandım.
+- CSS sınıflarını daha düzenli hale getirdim.
+- Responsive tasarım için media query kullanımını pekiştirdim.
+- Daha okunabilir ve düzenli bir proje yapısı oluşturdum.
