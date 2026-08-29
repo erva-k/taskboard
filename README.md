@@ -81,3 +81,12 @@ Bugün projeye JavaScript eklenerek form işlemleri dinamik hale getirildi. Form
 - Form verilerini okuma
 - `insertAdjacentHTML()` ile tabloya yeni satır ekleme
 - `form.reset()` ile formu temizleme
+
+## Gün 7 - JavaScript State ve Filtreleme
+
+Bugün görevleri `tasks` array'i üzerinden yönetmeye başladım.
+Görevlerin durum ve öncelik bilgilerini JavaScript ile kontrol ettim.
+`map`, `filter` ve `find` metotlarını kullanarak görevleri listeledim ve filtreledim.
+Tamamla butonuyla görevlerin durumunu değiştirdim.
+Toplam, açık ve tamamlanan görev sayılarını dinamik hale getirdim.
+Ayrıca önceliğe göre görev filtreleme özelliğini ekledim.

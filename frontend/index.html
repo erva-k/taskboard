@@ -18,17 +18,17 @@
 
     <div class="card kpi-card">
         <h3>Toplam Görev</h3>
-        <p id = "total-task">4</p>
+        <p id = "total-task">0</p>
     </div>
 
     <div class="card kpi-card">
         <h3>Bekleyen Görev</h3>
-        <p id ="pending-task">1</p>
+        <p id ="pending-task">0</p>
     </div>
 
     <div class="card kpi-card">
         <h3>Tamamlanan</h3>
-        <p id="completed-task">2</p>
+        <p id="completed-task">0</p>
     </div>
 
 </section>
@@ -89,6 +89,17 @@
         <section class="card">
 
             <h2>Aktif Görev Listesi</h2>
+            <div>
+                    <button type="button" data-filter="all">Tüm</button>
+                    <button type="button" data-filter="open">Açık</button>
+                    <button type="button" data-filter="completed">Tamamlandı</button>
+            </div>
+            <div>
+                    <button type="button" data-priority="all">Tüm Öncelikler</button>
+                    <button type="button" data-priority="high">Yüksek</button>
+                    <button type="button" data-priority="normal">Normal</button>
+                    <button type="button" data-priority="low">Düşük</button>
+            </div>
 
             <div class="table-wrapper">
 
@@ -102,6 +113,7 @@
                         <th>Öncelik</th>
                         <th>Durum</th>
                         <th>Oluşturma Tarihi</th>
+                        <th>İşlem</th>
                     </tr>
 
                 </thead>
