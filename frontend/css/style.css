@@ -175,3 +175,14 @@ textarea{
     }
 
 }
+#message {
+    margin: 10px 0;
+}
+
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}
