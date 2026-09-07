@@ -90,3 +90,12 @@ Görevlerin durum ve öncelik bilgilerini JavaScript ile kontrol ettim.
 Tamamla butonuyla görevlerin durumunu değiştirdim.
 Toplam, açık ve tamamlanan görev sayılarını dinamik hale getirdim.
 Ayrıca önceliğe göre görev filtreleme özelliğini ekledim.
+
+## Gün 8 - Async JavaScript ve localStorage
+
+Bugün görevleri localStorage kullanarak kalıcı hale getirdim.
+JSON.stringify ve JSON.parse ile veri dönüşümlerini uyguladım.
+Sayfa açıldığında kayıtlı görevlerin tekrar yüklenmesini sağladım.
+fetch ve async/await kullanarak örnek görevleri JSON dosyasından aldım.
+Hata durumlarını try/catch ile kontrol ettim.
+Ayrıca localStorage temizleme ve örnek görevleri içeri aktarma özelliklerini ekledim.
