@@ -99,3 +99,11 @@ Sayfa açıldığında kayıtlı görevlerin tekrar yüklenmesini sağladım.
 fetch ve async/await kullanarak örnek görevleri JSON dosyasından aldım.
 Hata durumlarını try/catch ile kontrol ettim.
 Ayrıca localStorage temizleme ve örnek görevleri içeri aktarma özelliklerini ekledim.
+
+gün9
+
+Bugün backend geliştirmeye geçiş için C# temel yapılarını çalıştım. Değişkenler, veri tipleri, koşullar, döngüler ve metotların kullanımını uygulamalı olarak öğrendim. Ayrıca .NET CLI kullanarak TaskBoard.Console projesini oluşturdum. Uygulamada görev ekleme, görevleri listeleme ve hatalı girişleri kontrol etme özelliklerini geliştirdim. Kodun daha okunabilir olması için işlemleri farklı metotlara ayırdım. Gün sonunda uygulamayı `dotnet run` ile test ederek menünün sorunsuz şekilde çalıştığını kontrol ettim.
+
+## Gün 10 - C# OOP, Model Sınıfları ve LINQ
+
+Bugün TaskBoard uygulamasının C# tarafını daha düzenli bir yapıya taşıdım. Görevleri temsil etmek için TaskItem modelini ve görev durumlarını yönetmek için TaskStatus enumunu oluşturdum. Görev işlemlerini TaskService sınıfında topladım. LINQ kullanarak açık durumdaki görevleri filtreledim. Aynı başlığa sahip görevlerin tekrar eklenmesini engelledim. Tamamlanan görevlerin durumunu değiştirerek CompletedAt bilgilerini kaydettim.

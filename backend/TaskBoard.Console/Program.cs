@@ -1,39 +1,49 @@
-using System;
-using System.Collections.Generic;
+using TaskBoard.ConsoleApp.Enums;
+using TaskStatusEnum = TaskBoard.ConsoleApp.Enums.TaskStatus;
+using TaskBoard.ConsoleApp.Models;
+using TaskBoard.ConsoleApp.Services;
 
 namespace TaskBoard.ConsoleApp;
 
 class Program
 {
-    static List<string> tasks = new List<string>();
+    static readonly TaskService taskService = new();
 
     static void Main()
     {
-        bool applicationRunning = true;
+        bool running = true;
 
-        while (applicationRunning)
+        while (running)
         {
             ShowMenu();
 
-            string? selection = Console.ReadLine();
+            string? choice = Console.ReadLine();
 
-            switch (selection)
+            switch (choice)
             {
                 case "1":
-                    DisplayTasks();
+                    ShowAllTasks();
                     break;
 
                 case "2":
-                    AddTask();
+                    CreateTask();
+                    break;
+
+                case "3":
+                    ShowOpenTasks();
+                    break;
+
+                case "4":
+                    CompleteTask();
                     break;
 
                 case "0":
-                    applicationRunning = false;
-                    Console.WriteLine("\nUygulama kapatılıyor...");
+                    running = false;
+                    Console.WriteLine("Uygulama kapatıldı.");
                     break;
 
                 default:
-                    Console.WriteLine("\nGeçersiz seçim. Lütfen menüdeki seçeneklerden birini kullanın.");
+                    Console.WriteLine("Geçersiz seçim.");
                     break;
             }
         }
@@ -41,34 +51,38 @@ class Program
 
     static void ShowMenu()
     {
-        Console.WriteLine("\n==============================");
-        Console.WriteLine("       TASKBOARD CONSOLE");
-        Console.WriteLine("==============================");
-        Console.WriteLine("1 - Görevleri Listele");
-        Console.WriteLine("2 - Yeni Görev Ekle");
+        Console.WriteLine();
+        Console.WriteLine("========== TASKBOARD ==========");
+        Console.WriteLine("1 - Tüm görevleri göster");
+        Console.WriteLine("2 - Yeni görev ekle");
+        Console.WriteLine("3 - Açık görevleri göster");
+        Console.WriteLine("4 - Görevi tamamla");
         Console.WriteLine("0 - Çıkış");
         Console.Write("Seçiminiz: ");
     }
 
-    static void DisplayTasks()
+    static void ShowAllTasks()
     {
-        Console.WriteLine("\n--- Görev Listesi ---");
+        List<TaskItem> tasks = taskService.GetAll();
 
         if (tasks.Count == 0)
         {
-            Console.WriteLine("Henüz kayıtlı bir görev bulunmuyor.");
+            Console.WriteLine("Henüz görev bulunmuyor.");
             return;
         }
 
-        for (int index = 0; index < tasks.Count; index++)
+        Console.WriteLine("\n--- Tüm Görevler ---");
+
+        foreach (TaskItem task in tasks)
         {
-            Console.WriteLine($"{index + 1}. {tasks[index]}");
+            Console.WriteLine(
+                $"{task.Id}. {task.Title} | Öncelik: {task.Priority} | Durum: {task.Status}");
         }
     }
 
-    static void AddTask()
+    static void CreateTask()
     {
-        Console.Write("\nGörev başlığını girin: ");
+        Console.Write("Görev başlığı: ");
         string? title = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(title))
@@ -77,17 +91,66 @@ class Program
             return;
         }
 
-        Console.Write("Öncelik (Düşük / Orta / Yüksek): ");
+        Console.Write("Öncelik: ");
         string? priority = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(priority))
         {
-            priority = "Orta";
+            priority = "Normal";
         }
 
-        string newTask = $"{title.Trim()} - Öncelik: {priority.Trim()}";
-        tasks.Add(newTask);
+        bool added = taskService.Add(title.Trim(), priority.Trim());
 
-        Console.WriteLine("Görev başarıyla eklendi.");
+        if (added)
+        {
+            Console.WriteLine("Görev başarıyla eklendi.");
+        }
+        else
+        {
+            Console.WriteLine("Bu başlıkta bir görev zaten bulunuyor.");
+        }
+    }
+
+    static void ShowOpenTasks()
+    {
+        List<TaskItem> openTasks =
+            taskService.GetByStatus(TaskStatusEnum.Open);
+
+        if (openTasks.Count == 0)
+        {
+            Console.WriteLine("Açık görev bulunmuyor.");
+            return;
+        }
+
+        Console.WriteLine("\n--- Açık Görevler ---");
+
+        foreach (TaskItem task in openTasks)
+        {
+            Console.WriteLine(
+                $"{task.Id}. {task.Title} | Öncelik: {task.Priority}");
+        }
+    }
+
+    static void CompleteTask()
+    {
+        Console.Write("Tamamlanacak görev ID: ");
+        string? input = Console.ReadLine();
+
+        if (!int.TryParse(input, out int id))
+        {
+            Console.WriteLine("Lütfen geçerli bir ID girin.");
+            return;
+        }
+
+        bool completed = taskService.MarkAsDone(id);
+
+        if (completed)
+        {
+            Console.WriteLine("Görev tamamlandı.");
+        }
+        else
+        {
+            Console.WriteLine("Bu ID ile eşleşen bir görev bulunamadı.");
+        }
     }
 }
