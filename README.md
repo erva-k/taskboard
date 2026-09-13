@@ -107,3 +107,11 @@ Bugün backend geliştirmeye geçiş için C# temel yapılarını çalıştım. 
 ## Gün 10 - C# OOP, Model Sınıfları ve LINQ
 
 Bugün TaskBoard uygulamasının C# tarafını daha düzenli bir yapıya taşıdım. Görevleri temsil etmek için TaskItem modelini ve görev durumlarını yönetmek için TaskStatus enumunu oluşturdum. Görev işlemlerini TaskService sınıfında topladım. LINQ kullanarak açık durumdaki görevleri filtreledim. Aynı başlığa sahip görevlerin tekrar eklenmesini engelledim. Tamamlanan görevlerin durumunu değiştirerek CompletedAt bilgilerini kaydettim.
+
+# Gün 11 - ASP.NET Core MVC Giriş
+Bugün TaskBoard projesinde ASP.NET Core MVC yapısını kullanmaya başladım.
+TaskBoard.Web adında bir MVC projesi oluşturdum.
+TaskItem modeli ile görev bilgilerini tuttum.
+TasksController içinde örnek görevler oluşturdum ve View'a gönderdim.
+Ayrıca /Tasks adresini ve ana menüde Tasks bağlantısını oluşturdum.
+CSS dosyasını wwwroot üzerinden kullanmayı öğrendim.

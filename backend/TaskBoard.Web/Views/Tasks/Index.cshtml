@@ -1,0 +1,31 @@
+@model List<TaskBoard.Web.Models.TaskItem>
+
+<h1>Tasks</h1>
+
+@if (Model.Count == 0)
+{
+    <p>Henüz görev bulunmuyor.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Görev</th>
+                <th>Öncelik</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.Id</td>
+                    <td>@task.Title</td>
+                    <td>@task.Priority</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
