@@ -1,0 +1,41 @@
+@model TaskBoard.Models.ViewModels.CreateTaskViewModel
+
+<h1>Yeni Görev Ekle</h1>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label asp-for="Title">Başlık</label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Priority">Öncelik</label>
+
+        <select asp-for="Priority">
+            <option value="low">Düşük</option>
+            <option value="normal">Normal</option>
+            <option value="high">Yüksek</option>
+        </select>
+
+        <span asp-validation-for="Priority"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Description">Açıklama</label>
+        <textarea asp-for="Description"></textarea>
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <br />
+
+    <button type="submit">Görevi Ekle</button>
+
+    <div asp-validation-summary="All"></div>
+
+</form>
