@@ -115,3 +115,24 @@ TaskItem modeli ile görev bilgilerini tuttum.
 TasksController içinde örnek görevler oluşturdum ve View'a gönderdim.
 Ayrıca /Tasks adresini ve ana menüde Tasks bağlantısını oluşturdum.
 CSS dosyasını wwwroot üzerinden kullanmayı öğrendim.
+
+## Gün 12 - Razor, ViewModel ve Form Validation
+
+Bugün TaskBoard projesinde görev ekleme formunu geliştirdim.
+
+- CreateTaskViewModel oluşturuldu.
+- Görev başlığı, öncelik ve açıklama alanları eklendi.
+- Form doğrulama kuralları oluşturuldu.
+- GET ve POST işlemleri ayrıldı.
+- Hatalı girişlerde validation mesajları gösterildi.
+- Başarılı eklenen görevlerin tabloda görünmesi sağlandı.
+
+## Gün 13 - Web API ve Frontend-Backend Bağlantısı
+
+- TaskBoard projesine Web API yapısı eklendi.
+- GET endpointi ile görevlerin JSON formatında listelenmesi sağlandı.
+- POST endpointi ile frontend üzerinden yeni görev ekleme işlemi gerçekleştirildi.
+- PATCH endpointi ile görevlerin durumunun güncellenmesi sağlandı.
+- Frontend tarafında fetch kullanılarak backend API ile bağlantı kuruldu.
+- Görev verilerinin localStorage yerine API üzerinden alınması sağlandı.
+- Frontend ve backend arasındaki CORS problemi giderildi.

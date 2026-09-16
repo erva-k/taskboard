@@ -1,35 +1,4 @@
-let tasks = [
-    {
-        id: 1,
-        title: "Veritabanı Kurulumu",
-        priority: "high",
-        status: "open"
-    },
-    {
-        id: 2,
-        title: "Klasör Yapısının Kurulması",
-        priority: "normal",
-        status: "completed"
-    },
-    {
-        id: 3,
-        title: "HTML Formlarının Oluşturulması",
-        priority: "normal",
-        status: "completed"
-    },
-    {
-        id: 4,
-        title: "CSS Tasarımını Tamamlama",
-        priority: "normal",
-        status: "open"
-    },
-    {
-        id: 5,
-        title: "README Güncelleme",
-        priority: "low",
-        status: "open"
-    }
-];
+let tasks = [];
 
 const form = document.querySelector("#task-form");
 const tableBody = document.querySelector("#task-table-body");
@@ -40,35 +9,24 @@ const completedTask = document.querySelector("#completed-task");
 
 const filterButtons = document.querySelectorAll("[data-filter]");
 const priorityButtons = document.querySelectorAll("[data-priority]");
-
-const clearStorageButton = document.querySelector("#clear-storage");
 const importTasksButton = document.querySelector("#import-tasks");
 const message = document.querySelector("#message");
 
 
-function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-function loadTasks() {
-    const raw = localStorage.getItem("tasks");
-
-    if (!raw) {
-        return;
-    }
-
+async function loadTasks() {
     try {
-        const savedTasks = JSON.parse(raw);
+        const response = await fetch("http://localhost:5272/api/tasks");
 
-        if (Array.isArray(savedTasks)) {
-            tasks = savedTasks;
-        } else {
-            tasks = [];
-            showMessage("Görev verisi geçersiz.", true);
+        if (!response.ok) {
+            throw new Error("Görevler API'den alınamadı.");
         }
+
+        tasks = await response.json();
+
+        renderTasks(tasks);
     } catch (error) {
-        tasks = [];
-        showMessage("Görev verileri okunamadı.", true);
+        console.error(error);
+        showMessage("Görevler yüklenirken bir hata oluştu.", true);
     }
 }
 
@@ -165,8 +123,7 @@ priorityButtons.forEach(button => {
     });
 });
 
-
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const title = document.querySelector("#title").value.trim();
@@ -177,51 +134,64 @@ form.addEventListener("submit", function (event) {
         return;
     }
 
-    const newTask = {
-        id: tasks.length + 1,
-        title: title,
-        priority: priority,
-        status: "open",
-        createdAt: new Date().toLocaleDateString("tr-TR")
-    };
+    try {
+        const response = await fetch("http://localhost:5272/api/tasks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: title,
+                priority: priority
+            })
+        });
 
-    tasks.push(newTask);
-
-    saveTasks();
-    renderTasks(tasks);
-
-    form.reset();
-
-    showMessage("Görev başarıyla eklendi.");
-});
-
-
-tableBody.addEventListener("click", function (event) {
-    if (event.target.dataset.id) {
-        const taskId = Number(event.target.dataset.id);
-
-        const task = tasks.find(task => task.id === taskId);
-
-        if (task) {
-            task.status = "completed";
-
-            saveTasks();
-            renderTasks(tasks);
-
-            showMessage("Görev tamamlandı.");
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage || "Görev eklenemedi.");
         }
+
+        form.reset();
+        showMessage("Görev başarıyla eklendi.");
+
+        await loadTasks();
+    } catch (error) {
+        console.error(error);
+        showMessage("Görev eklenirken bir hata oluştu.", true);
     }
 });
 
+tableBody.addEventListener("click", async function (event) {
+    if (!event.target.dataset.id) {
+        return;
+    }
 
-clearStorageButton.addEventListener("click", function () {
-    localStorage.removeItem("tasks");
+    const taskId = Number(event.target.dataset.id);
 
-    tasks = [];
+    try {
+        const response = await fetch(
+            `http://localhost:5272/api/tasks/${taskId}/status`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    status: "completed"
+                })
+            }
+        );
 
-    renderTasks(tasks);
+        if (!response.ok) {
+            throw new Error("Görev durumu güncellenemedi.");
+        }
 
-    showMessage("localStorage temizlendi.");
+        showMessage("Görev tamamlandı.");
+        await loadTasks();
+    } catch (error) {
+        console.error(error);
+        showMessage("Görev tamamlanırken bir hata oluştu.", true);
+    }
 });
 
 
@@ -244,8 +214,6 @@ async function loadSampleTasks() {
         }));
 
         tasks = [...tasks, ...importedTasks];
-
-        saveTasks();
         renderTasks(tasks);
 
         showMessage("Örnek görevler başarıyla içeri aktarıldı.");
@@ -259,4 +227,3 @@ importTasksButton.addEventListener("click", loadSampleTasks);
 
 
 loadTasks();
-renderTasks(tasks);
