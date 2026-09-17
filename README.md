@@ -136,3 +136,13 @@ Bugün TaskBoard projesinde görev ekleme formunu geliştirdim.
 - Frontend tarafında fetch kullanılarak backend API ile bağlantı kuruldu.
 - Görev verilerinin localStorage yerine API üzerinden alınması sağlandı.
 - Frontend ve backend arasındaki CORS problemi giderildi.
+
+## Gün 14 - Entity Framework Core ve Veritabanı
+
+- Entity Framework Core ve SQLite paketleri projeye eklendi.
+- TaskBoardDbContext oluşturularak TaskItem modeli veritabanına bağlandı.
+- SQLite için connection string tanımlandı ve ilk migration oluşturuldu.
+- API'deki geçici görev listesi kaldırılarak görevlerin veritabanında saklanması sağlandı.
+- TaskItem modeline CreatedAt alanı eklendi ve Title alanı zorunlu hale getirildi.
+- Veritabanına 3 örnek görev eklemek için seed metodu oluşturuldu.
+- Uygulama yeniden başlatılarak görevlerin veritabanında kalıcı olarak saklandığı test edildi.

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TaskBoard.Data;
 using TaskBoard.Web.Models;
 
 namespace TaskBoard.Api
@@ -7,12 +8,19 @@ namespace TaskBoard.Api
     [Route("api/tasks")]
     public class TasksApiController : ControllerBase
     {
-        private static readonly List<TaskItem> Tasks = new();
+        private readonly TaskBoardDbContext _context;
+
+        public TasksApiController(TaskBoardDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(Tasks);
+            var tasks = _context.TaskItems.ToList();
+
+            return Ok(tasks);
         }
 
         [HttpPost]
@@ -23,22 +31,23 @@ namespace TaskBoard.Api
                 return BadRequest("Başlık zorunludur.");
             }
 
-          var task = new TaskItem
+            var task = new TaskItem
             {
-                Id = Tasks.Count + 1,
                 Title = request.Title,
                 Priority = request.Priority,
                 Status = "open"
             };
 
-            Tasks.Add(task);
+            _context.TaskItems.Add(task);
+            _context.SaveChanges();
 
             return Created($"/api/tasks/{task.Id}", task);
         }
+
         [HttpPatch("{id}/status")]
         public IActionResult UpdateStatus(int id, UpdateStatusRequest request)
         {
-            var task = Tasks.FirstOrDefault(t => t.Id == id);
+            var task = _context.TaskItems.FirstOrDefault(t => t.Id == id);
 
             if (task == null)
             {
@@ -51,6 +60,8 @@ namespace TaskBoard.Api
             }
 
             task.Status = request.Status;
+
+            _context.SaveChanges();
 
             return Ok(task);
         }

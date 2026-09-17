@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using TaskBoard.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<TaskBoardDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddCors(options =>
 {
@@ -32,6 +37,12 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+    
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<TaskBoardDbContext>();
 
+    DbSeeder.Seed(context);
+}
 
 app.Run();
