@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using TaskBoard.Data;
+using TaskBoard.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<TaskBoardDbContext>(options =>
