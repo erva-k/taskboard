@@ -146,3 +146,21 @@ Bugün TaskBoard projesinde görev ekleme formunu geliştirdim.
 - TaskItem modeline CreatedAt alanı eklendi ve Title alanı zorunlu hale getirildi.
 - Veritabanına 3 örnek görev eklemek için seed metodu oluşturuldu.
 - Uygulama yeniden başlatılarak görevlerin veritabanında kalıcı olarak saklandığı test edildi.
+
+## Gün 15 - CRUD Operasyonları ve Service Katmanı
+
+Bugün TaskBoard projesine Service katmanı eklendi.
+Veritabanı işlemleri Controller'dan TaskService içerisine taşındı.
+CRUD işlemleri async olarak düzenlendi ve DTO yapısı kullanıldı.
+PUT ile görev güncelleme, DELETE ile görev silme işlemleri eklendi.
+Endpointler test edilerek CRUD işlemlerinin doğru çalıştığı kontrol edildi.
+
+## Gün 16 - Frontend API Entegrasyonu ve CRUD
+
+- Frontend ile ASP.NET API bağlantısı tamamlandı.
+- API işlemleri için `apiClient.js` oluşturuldu.
+- Görev listeleme, ekleme, güncelleme ve silme işlemleri API'ye bağlandı.
+- Görev durumunu tamamlamak için PATCH işlemi kullanıldı.
+- Silme işleminden önce kullanıcı onayı eklendi.
+- API işlemlerinde hata yönetimi ve butonların geçici olarak devre dışı bırakılması sağlandı.
+- Yapılan işlemler Network sekmesinden test edildi.
