@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskBoard.Web.Models;
 using TaskBoard.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskBoard.Api
 {
@@ -95,18 +96,18 @@ namespace TaskBoard.Api
 
             return NoContent();
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var deleted = await _taskService.DeleteAsync(id);
-
-            if (!deleted)
+            [Authorize(Roles = "Admin")]
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> Delete(int id)
             {
-                return NotFound("Görev bulunamadı.");
-            }
+                var deleted = await _taskService.DeleteAsync(id);
 
-            return NoContent();
-        }
+                if (!deleted)
+                {
+                    return NotFound("Görev bulunamadı.");
+                }
+
+                return NoContent();
+            }
     }
 }

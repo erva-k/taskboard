@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskBoard.Web.Models;
 using TaskBoard.Models.ViewModels;
 
 namespace TaskBoard.Web.Controllers
-{
+{[Authorize]
     public class TasksController : Controller
     {
         private static List<TaskItem> tasks = new List<TaskItem>

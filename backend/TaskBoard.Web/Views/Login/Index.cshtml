@@ -1,0 +1,35 @@
+@model TaskBoard.Web.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<h2>TaskBoard Giriş</h2>
+
+<form asp-controller="Login"
+      asp-action="Index"
+      method="post">
+
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <label asp-for="Username">Kullanıcı Adı</label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Password">Şifre</label>
+        <input asp-for="Password"
+               type="password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <br />
+
+    <button type="submit">
+        Giriş Yap
+    </button>
+</form>

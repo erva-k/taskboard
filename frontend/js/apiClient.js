@@ -2,11 +2,14 @@ const API_URL = "http://localhost:5272/api/tasks";
 
 async function request(url, options = {}) {
     const response = await fetch(url, {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        ...options
-    });
+    credentials: "include",
+
+    headers: {
+        "Content-Type": "application/json"
+    },
+
+    ...options
+});;
 
     if (!response.ok) {
         const errorMessage = await response.text();

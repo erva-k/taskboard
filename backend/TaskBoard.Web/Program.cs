@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using TaskBoard.Data;
 using TaskBoard.Web.Services;
@@ -8,7 +9,20 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<TaskBoardDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
+
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";
+        options.AccessDeniedPath = "/Login/AccessDenied";
+    });
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddCors(options =>
 {
@@ -16,7 +30,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://127.0.0.1:5500")
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
@@ -25,12 +40,15 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-   
 }
-app.UseCors("AllowFrontend");
+
 app.UseHttpsRedirection();
+
 app.UseRouting();
 
+app.UseCors("AllowFrontend");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
@@ -39,10 +57,12 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-    
+
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<TaskBoardDbContext>();
+    var context =
+        scope.ServiceProvider
+             .GetRequiredService<TaskBoardDbContext>();
 
     DbSeeder.Seed(context);
 }
